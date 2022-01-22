@@ -33,8 +33,8 @@ pageextension 50105 ExtendSalesOrderList extends "Sales Order List"
         recSalesLine.Reset();
         Clear(ProdDueDate);
         Clear(ProdOrderNo);
-        recSalesLine.SetRange("Document Type", "Document Type"::Order);
-        recSalesLine.SetRange("Document No.", "No.");
+        recSalesLine.SetRange("Document Type", Rec."Document Type"::Order);
+        recSalesLine.SetRange("Document No.", Rec."No.");
         recSalesLine.SetRange(Type, recSalesLine.Type::Item);
         IF recSalesLine.FindFirst() then;
         recResvEntry.Reset();

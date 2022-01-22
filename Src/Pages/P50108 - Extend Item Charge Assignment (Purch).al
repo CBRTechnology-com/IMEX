@@ -4,7 +4,7 @@ pageextension 50108 ExtendItemChargeAssignPurch extends "Item Charge Assignment 
     {
         addafter("Applies-to Doc. No.")
         {
-            field("External Document No."; "External Document No.")
+            field("External Document No."; Rec."External Document No.")
             {
                 ApplicationArea = All;
                 Caption = 'External Doc No.';
@@ -23,6 +23,6 @@ pageextension 50108 ExtendItemChargeAssignPurch extends "Item Charge Assignment 
 
     trigger OnAfterGetRecord()
     begin
-        FindExternalDocNo();
+        Rec.FindExternalDocNo();
     end;
 }

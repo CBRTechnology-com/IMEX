@@ -4,15 +4,15 @@ pageextension 50104 ExtendItemList extends "Item List"
   {
     addbefore("Substitutes Exist")
     {
-      field("Qty. on Sales Order";"Qty. on Sales Order")
+      field("Qty. on Sales Order";Rec."Qty. on Sales Order")
       {
         ApplicationArea = All;
       }
-      field("Qty. on Purch. Order";"Qty. on Purch. Order")
+      field("Qty. on Purch. Order";Rec."Qty. on Purch. Order")
       {
         ApplicationArea = All;
       }
-      field("Qty. on Prod. Order";"Qty. on Prod. Order")
+      field("Qty. on Prod. Order";Rec."Qty. on Prod. Order")
       {
         ApplicationArea = all;
       }

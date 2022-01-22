@@ -16,15 +16,25 @@ tableextension 50001 ExtendProdBOMLine extends "Production BOM Line"
             var
                 ItemRec: Record Item;
             begin
+                Clear(AmountWithScrap);
                 if "Unit Cost" <> 0 then begin
                     QtyPerUOM := GetQtyPerUnitOfMeasure();
-                    Amount := Quantity * "Unit Cost" * QtyPerUOM
+                    if "Scrap %" = 0 then begin
+                        Amount := Quantity * "Unit Cost" * QtyPerUOM
+                    end else begin
+                        AmountWithScrap := ((Quantity * "Unit Cost") * "Scrap %") / 100;
+                        Amount := (Quantity * "Unit Cost" * QtyPerUOM) + AmountWithScrap;
+                    end;
                 end else begin
                     ItemRec.get("No.");
                     QtyPerUOM := GetQtyPerUnitOfMeasure();
-                    Amount := Quantity * ItemRec."Unit Cost" * QtyPerUOM;
-                end
-
+                    if "Scrap %" = 0 then begin
+                        Amount := Quantity * ItemRec."Unit Cost" * QtyPerUOM
+                    end else begin
+                        AmountWithScrap := ((Quantity * ItemRec."Unit Cost") * "Scrap %") / 100;
+                        Amount := (Quantity * ItemRec."Unit Cost" * QtyPerUOM) + AmountWithScrap;
+                    end;
+                end;
             end;
         }
     }
@@ -32,4 +42,5 @@ tableextension 50001 ExtendProdBOMLine extends "Production BOM Line"
     var
         myInt: Integer;
         QtyPerUOM: Decimal;
+        AmountWithScrap: Decimal;
 }

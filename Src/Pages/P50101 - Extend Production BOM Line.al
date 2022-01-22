@@ -4,12 +4,12 @@ pageextension 50101 ExtendProdBOMLine extends "Production BOM Lines"
     {
         addafter("Scrap %")
         {
-            field("Unit Cost"; "Unit Cost")
+            field("Unit Cost"; Rec."Unit Cost")
             {
                 ApplicationArea = all;
                 Caption = 'Unit Cost';
             }
-            field(Amount; Amount)
+            field(Amount; Rec.Amount)
             {
                 ApplicationArea = all;
                 Caption = 'Amount';
@@ -33,16 +33,22 @@ pageextension 50101 ExtendProdBOMLine extends "Production BOM Lines"
 
 
     trigger OnAfterGetRecord()
-
+    var
+        AmountWithScrap: Decimal;
     begin
 
-        if Type = Type::Item then begin
+        if Rec.Type = Rec.Type::Item then begin
 
-            if recItem.get("No.") and (Amount = 0) and ("Unit Cost" = 0) then begin
-                QtyPerUOM := GetQtyPerUnitOfMeasure();
-                "Unit Cost" := recItem."Unit Cost";
-                Amount := Quantity * recItem."Unit Cost" * QtyPerUOM;
-                Modify(false);
+            if recItem.get(Rec."No.") and (Rec.Amount = 0) and (Rec."Unit Cost" = 0) then begin
+                QtyPerUOM := Rec.GetQtyPerUnitOfMeasure();
+                Rec."Unit Cost" := recItem."Unit Cost";
+                if Rec."Scrap %" = 0 then begin
+                    Rec.Amount := Rec.Quantity * Rec."Unit Cost" * QtyPerUOM
+                end else begin
+                    AmountWithScrap := ((Rec.Quantity * Rec."Unit Cost") * Rec."Scrap %") / 100;
+                    Rec.Amount := (Rec.Quantity * Rec."Unit Cost" * QtyPerUOM) + AmountWithScrap;
+                end;
+                Rec.Modify(false);
                 PrdoBOMHeaderPage.PageRefresh();
             end;
         end;

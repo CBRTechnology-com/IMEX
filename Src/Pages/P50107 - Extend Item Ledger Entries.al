@@ -4,12 +4,12 @@ pageextension 50107 ExtendItemLedgerEntries extends "Item Ledger Entries"
     {
         addafter("Item No.")
         {
-            field("Source No."; "Source No.")
+            field("Source No."; Rec."Source No.")
             {
                 ApplicationArea = All;
                 Caption = 'Source No.';
             }
-            field("Source Name"; "Source Name")
+            field("Source Name"; Rec."Source Name")
             {
                 ApplicationArea = All;
                 Caption = 'Source Name';
@@ -27,6 +27,6 @@ pageextension 50107 ExtendItemLedgerEntries extends "Item Ledger Entries"
 
     trigger OnAfterGetRecord()
     begin
-        GetSourceName();
+        Rec.GetSourceName();
     end;
 }

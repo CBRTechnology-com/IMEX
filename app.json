@@ -1,8 +1,8 @@
 {
   "id": "fbf0144f-693d-42f8-a5dd-9fd0ac1323d1",
-  "name": "IMEX Customization BC15",
-  "publisher": "CBR Technologies",
-  "version": "1.0.0.45",
+  "name": "IMEX BC18",
+  "publisher": "CBR Technology",
+  "version": "18.0.0.0",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -10,30 +10,17 @@
   "help": "",
   "url": "",
   "logo": "",
-  
-  "dependencies": [
-    {
-      "appId": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
-      "publisher": "Microsoft",
-      "name": "System Application",
-      "version": "1.0.0.0"
-    },
-    {
-      "appId": "437dbf0e-84ff-417a-965d-ed2bb9650972",
-      "publisher": "Microsoft",
-      "name": "Base Application",
-      "version": "15.0.0.0"
-    }
-  ],
+  "dependencies": [],
   "screenshots": [],
-  "platform": "15.0.0.0",
+  "platform": "18.0.0.0",
+  "application": "18.0.0.0",
   "idRanges": [
     {
       "from": 50000,
-      "to": 59999
+      "to": 99999
     }
   ],
-  "contextSensitiveHelpUrl": "https://IMEXCustomizationBC15.com/help/",
+  "contextSensitiveHelpUrl": "https://IMEXBC17.com/help/",
   "showMyCode": true,
-  "runtime": "4.0"
+  "runtime": "7.0"
 }

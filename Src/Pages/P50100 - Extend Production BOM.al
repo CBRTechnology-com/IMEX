@@ -6,7 +6,7 @@ pageextension 50100 ExtendProductionBOM extends "Production BOM"
     {
         addafter("Search Name")
         {
-            field("Estimated Cost"; "Estimated Cost")
+            field("Estimated Cost"; Rec."Estimated Cost")
             {
                 ApplicationArea = all;
                 Caption = 'Estimated Cost';
